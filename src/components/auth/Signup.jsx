@@ -67,58 +67,73 @@ const Signup = () => {
     }
   }, []);
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex-1 flex items-center justify-center max-w-7xl mx-auto px-4 w-full">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full md:w-2/3 lg:w-1/2 xl:w-2/5 border border-gray-200 rounded-md p-4 md:p-6 my-10"
         >
-          <h1 className="font-bold text-xl mb-5">Sign Up</h1>
-          <div className="my-2">
-            <Label>Full Name</Label>
+          <h1 className="font-bold text-xl md:text-2xl mb-5 text-center md:text-left">Sign Up</h1>
+          
+          <div className="my-3 md:my-4">
+            <Label htmlFor="fullname" className="text-sm md:text-base">Full Name</Label>
             <Input
+              id="fullname"
               type="text"
               value={input.fullname}
               name="fullname"
               onChange={changeEventHandler}
               placeholder="Jay Kumar"
+              className="mt-1 text-sm md:text-base"
             />
           </div>
-          <div className="my-2">
-            <Label>Email</Label>
+          
+          <div className="my-3 md:my-4">
+            <Label htmlFor="email" className="text-sm md:text-base">Email</Label>
             <Input
+              id="email"
               type="email"
               value={input.email}
               name="email"
               onChange={changeEventHandler}
               placeholder="jay@gmail.com"
+              className="mt-1 text-sm md:text-base"
             />
           </div>
-          <div className="my-2">
-            <Label>Phone Number</Label>
+          
+          <div className="my-3 md:my-4">
+            <Label htmlFor="phoneNumber" className="text-sm md:text-base">Phone Number</Label>
             <Input
+              id="phoneNumber"
               type="text"
               value={input.phoneNumber}
               name="phoneNumber"
               onChange={changeEventHandler}
               placeholder="8080808080"
+              className="mt-1 text-sm md:text-base"
             />
           </div>
-          <div className="my-2">
-            <Label>Password</Label>
+          
+          <div className="my-3 md:my-4">
+            <Label htmlFor="password" className="text-sm md:text-base">Password</Label>
             <Input
+              id="password"
               type="password"
               value={input.password}
               name="password"
               onChange={changeEventHandler}
-              placeholder="jay@gmail.com"
+              placeholder="Enter your password"
+              className="mt-1 text-sm md:text-base"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
+          
+          <div className="my-4 md:my-5">
+            <Label className="text-sm md:text-base mb-2 block">Select Role</Label>
+            <RadioGroup className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <div className="flex items-center space-x-2">
                 <Input
+                  id="student-role"
                   type="radio"
                   name="role"
                   value="student"
@@ -126,10 +141,11 @@ const Signup = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r1">Student</Label>
+                <Label htmlFor="student-role" className="cursor-pointer text-sm md:text-base">Student</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Input
+                  id="recruiter-role"
                   type="radio"
                   name="role"
                   value="recruiter"
@@ -137,35 +153,40 @@ const Signup = () => {
                   onChange={changeEventHandler}
                   className="cursor-pointer"
                 />
-                <Label htmlFor="r2">Recruiter</Label>
+                <Label htmlFor="recruiter-role" className="cursor-pointer text-sm md:text-base">Recruiter</Label>
               </div>
             </RadioGroup>
-            <div className="flex items-center gap-2">
-              <Label>Profile</Label>
-              <Input
-                accept="image/*"
-                type="file"
-                onChange={changeFileHandler}
-                className="cursor-pointer"
-              />
-            </div>
           </div>
+          
+          <div className="my-4 md:my-5">
+            <Label htmlFor="profile-picture" className="text-sm md:text-base mb-2 block">Profile Picture</Label>
+            <Input
+              id="profile-picture"
+              accept="image/*"
+              type="file"
+              onChange={changeFileHandler}
+              className="cursor-pointer text-xs md:text-sm"
+            />
+          </div>
+          
           {loading ? (
-            <Button className="w-full my-4">
-              {" "}
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
+            <Button className="w-full my-4 md:my-5 py-2 text-sm md:text-base" disabled>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
             </Button>
           ) : (
-            <Button type="submit" className="w-full my-4">
+            <Button type="submit" className="w-full my-4 md:my-5 py-2 text-sm md:text-base">
               Signup
             </Button>
           )}
-          <span className="text-sm">
-            Already have an account?{" "}
-            <Link to="/login" className="text-blue-600">
-              Login
-            </Link>
-          </span>
+          
+          <div className="text-center mt-4">
+            <span className="text-xs md:text-sm">
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-600 hover:underline">
+                Login
+              </Link>
+            </span>
+          </div>
         </form>
       </div>
     </div>
